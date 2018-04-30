@@ -24,6 +24,7 @@ d3.csv("2017.csv", function(data) {
     .style('height', function (array){
       return array['Happiness.Score'] * 25 + 'px'
     })
+    
   const svg = d3.select('#chart-area').append('svg')
     .attr('width', 400)
     .attr('height', 300)
@@ -45,6 +46,9 @@ d3.csv("2017.csv", function(data) {
     .attr('y', (d) => {
       return 300 - yScale(d['Happiness.Score'])
     })
+    .transition()
+    .duration(2000)
+    .delay(function(d, i) { return i * 100; })
     .attr('width', 10)
     .attr('height', (d) => {
       return yScale(d['Happiness.Score'])
@@ -52,6 +56,7 @@ d3.csv("2017.csv", function(data) {
     .attr('fill', (d) => {
       return colorScale(d['Happiness.Score'])
     })
+    
 })
 
 
